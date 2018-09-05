@@ -18,6 +18,9 @@
           target="_blank"
           class="button--grey">GitHub</a>
       </div>
+      <ul>
+        <li v-for="result in results" :key="result.title">{{ result.title }}</li>
+      </ul>
     </div>
   </section>
 </template>
@@ -26,6 +29,10 @@
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
+  async asyncData({ app }) {
+    const { results } = await app.$axios.$get(process.env.API_URL)
+    return { results }
+  },
   components: {
     AppLogo
   }
