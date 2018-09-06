@@ -14,7 +14,9 @@
         <button @click="getRanking('year')">1年以内</button>
       </div>
       <ul>
-        <li v-for="post in ranking" :key="post.title">{{ post.title }} {{ post.pick_count }}pick</li>
+        <li v-for="post in ranking" :key="post.title">
+          <a :href="post.url" target="_blank">{{ post.title }}</a> {{ post.pick_count }}pick
+        </li>
       </ul>
     </div>
   </section>
