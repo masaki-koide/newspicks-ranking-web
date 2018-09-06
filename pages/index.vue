@@ -5,20 +5,31 @@
       <h1 class="title">
         newspicks-ranking-web
       </h1>
+      <div>
+        <button @click="getRanking(null)">全体</button>
+        <button @click="getRanking('day')">24時間以内</button>
+        <button @click="getRanking('week')">1週間以内</button>
+        <button @click="getRanking('month')">1ヶ月以内</button>
+        <button @click="getRanking('half-year')">半年以内</button>
+        <button @click="getRanking('year')">1年以内</button>
+      </div>
       <ul>
-        <li v-for="result in results" :key="result.title">{{ result.title }}</li>
+        <li v-for="post in ranking" :key="post.title">{{ post.title }} {{ post.pick_count }}pick</li>
       </ul>
     </div>
   </section>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
-  async asyncData({ app }) {
-    const { results } = await app.$axios.$get(process.env.API_URL)
-    return { results }
+  computed: {
+    ...mapGetters(['ranking'])
+  },
+  methods: {
+    ...mapActions(['getRanking'])
   },
   components: {
     AppLogo
