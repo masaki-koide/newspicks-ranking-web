@@ -1,25 +1,40 @@
 <template>
-  <section class="container">
-    <div>
-      <!-- <app-logo/> -->
-      <h1 class="title">
-        newspicks-ranking-web
-      </h1>
-      <div>
-        <button @click="getRanking(null)">全体</button>
-        <button @click="getRanking('day')">24時間以内</button>
-        <button @click="getRanking('week')">1週間以内</button>
-        <button @click="getRanking('month')">1ヶ月以内</button>
-        <button @click="getRanking('half-year')">半年以内</button>
-        <button @click="getRanking('year')">1年以内</button>
+  <div>
+    <header class="py-5">
+      <h1 class="headline font-weight-thin">newspicks-ranking-web</h1>
+    </header>
+    <main>
+      <v-tabs
+        dark
+        show-arrows
+        fixed-tabs
+        slider-color="white">
+        <v-tab @click="getRanking(null)">全体</v-tab>
+        <v-tab @click="getRanking('day')">24時間以内</v-tab>
+        <v-tab @click="getRanking('week')">1週間以内</v-tab>
+        <v-tab @click="getRanking('month')">1ヶ月以内</v-tab>
+        <v-tab @click="getRanking('half-year')">半年以内</v-tab>
+        <v-tab @click="getRanking('year')">1年以内</v-tab>
+      </v-tabs>
+      <div v-if="true">
+        <v-card v-for="post in ranking" :key="post.url">
+          <v-card-title primary-title>
+            <a :href="post.url" target="_blank">{{ post.title }}</a>
+          </v-card-title>
+          <v-card-actions class="pl-3">
+            <span class="font-weight-bold">{{ post.pick_count }}</span>Picks
+          </v-card-actions>
+        </v-card>
       </div>
-      <ul>
-        <li v-for="post in ranking" :key="post.url">
-          <a :href="post.url" target="_blank">{{ post.title }}</a> {{ post.pick_count }}pick
-        </li>
-      </ul>
-    </div>
-  </section>
+      <div v-else>
+        <v-progress-circular
+          :size="100"
+          color="primary"
+          indeterminate
+        />
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -27,6 +42,9 @@ import { mapGetters, mapActions } from 'vuex'
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
+  async asyncData({ store }) {
+    await store.dispatch('getRanking', null)
+  },
   computed: {
     ...mapGetters(['ranking'])
   },
@@ -40,21 +58,8 @@ export default {
 </script>
 
 <style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+h1 {
   text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
 }
 </style>
 
