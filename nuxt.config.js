@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   /*
   ** Headers of the page
@@ -40,6 +42,9 @@ module.exports = {
     '@nuxtjs/dotenv',
     '@nuxtjs/vuetify'
   ],
+  axios: {
+    baseURL: process.env.API_URL || 'http://localhost:3000'
+  },
   vuetify: {
     theme: {
       primary: '#3f51b5',
