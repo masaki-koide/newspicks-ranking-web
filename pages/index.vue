@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="py-5">
-      <h1 class="headline font-weight-thin">newspicks-ranking-web</h1>
+      <h1 class="headline font-weight-thin">NewsPicks人気記事ランキング</h1>
     </header>
     <main>
       <v-tabs
@@ -26,7 +26,7 @@
           </v-card-actions>
         </v-card>
       </div>
-      <div v-else>
+      <div v-else class="pt-5">
         <v-progress-circular
           :size="100"
           color="primary"
@@ -60,6 +60,10 @@ export default {
 <style>
 h1 {
   text-align: center;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
 
