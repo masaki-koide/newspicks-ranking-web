@@ -39,11 +39,15 @@ module.exports = {
   },
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
     '@nuxtjs/vuetify'
   ],
   axios: {
-    baseURL: process.env.API_URL || 'http://localhost:3000'
+    prefix: process.env.STAGE
+  },
+  proxy: {
+    [process.env.STAGE]: process.env.API_URL
   },
   vuetify: {
     theme: {
