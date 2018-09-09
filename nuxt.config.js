@@ -47,7 +47,9 @@ module.exports = {
     prefix: process.env.STAGE
   },
   proxy: {
-    [process.env.STAGE]: process.env.API_URL
+    [process.env.STAGE]: {
+      target: process.env.API_URL
+    }
   },
   vuetify: {
     theme: {
