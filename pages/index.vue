@@ -17,14 +17,18 @@
         <v-tab @click="getRanking(null)">全期間</v-tab>
       </v-tabs>
       <div v-if="!isLoading">
-        <v-card v-for="post in ranking" :key="post.url">
-          <v-card-title primary-title>
-            <a :href="post.url" target="_blank">{{ post.title }}</a>
-          </v-card-title>
-          <v-card-actions class="pl-3">
-            <span class="font-weight-bold">{{ post.pick_count }}</span>Picks
-          </v-card-actions>
-        </v-card>
+        <v-layout wrap>
+          <v-flex v-for="post in ranking" :key="post.url" xs12 sm6>
+            <v-card tile hover>
+              <v-card-title primary-title>
+                <a :href="post.url" target="_blank">{{ post.title }}</a>
+              </v-card-title>
+              <v-card-actions class="pl-3">
+                <span class="font-weight-bold">{{ post.pick_count }}</span>Picks
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
       </div>
       <div v-else class="pt-5">
         <v-layout justify-center>
