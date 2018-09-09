@@ -44,10 +44,10 @@ module.exports = {
     '@nuxtjs/vuetify'
   ],
   axios: {
-    prefix: process.env.STAGE
+    prefix: '/dev'
   },
   proxy: {
-    [process.env.STAGE]: process.env.API_URL
+    '/dev': process.env.API_URL
   },
   vuetify: {
     theme: {
