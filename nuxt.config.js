@@ -46,7 +46,7 @@ module.exports = {
   axios: {
   },
   proxy: {
-    [process.env.STAGE]: process.env.API_URL
+    'dev': process.env.API_URL
   },
   vuetify: {
     theme: {

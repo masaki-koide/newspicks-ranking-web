@@ -25,7 +25,7 @@ const store = () => new Vuex.Store({
           commit('setCurrentRankingKey', rankingKey)
           return
         }
-        const results = await this.$axios.$get(`${process.env.STAGE}/ranking?range=${range ? range : ''}`)
+        const results = await this.$axios.$get(`/dev/ranking?range=${range ? range : ''}`)
         commit('setRanking', { results: results, range: rankingKey})
       } catch (e) {
         return Promise.reject(e)
