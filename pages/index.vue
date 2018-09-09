@@ -16,7 +16,7 @@
         <v-tab @click="getRanking('year')">年間</v-tab>
         <v-tab @click="getRanking(null)">全期間</v-tab>
       </v-tabs>
-      <div v-if="true">
+      <div v-if="!isLoading">
         <v-card v-for="post in ranking" :key="post.url">
           <v-card-title primary-title>
             <a :href="post.url" target="_blank">{{ post.title }}</a>
@@ -27,18 +27,20 @@
         </v-card>
       </div>
       <div v-else class="pt-5">
-        <v-progress-circular
-          :size="100"
-          color="primary"
-          indeterminate
-        />
+        <v-layout justify-center>
+          <v-progress-circular
+            :size="100"
+            color="primary"
+            indeterminate
+          />
+        </v-layout>
       </div>
     </main>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
@@ -46,6 +48,7 @@ export default {
     await store.dispatch('getRanking', 'day')
   },
   computed: {
+    ...mapState(['isLoading']),
     ...mapGetters(['ranking'])
   },
   methods: {

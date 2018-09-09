@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 const store = () => new Vuex.Store({
   state: {
     rankingObj: {},
-    currentRankingKey: null
+    currentRankingKey: null,
+    isLoading: false
   },
   getters: {
     ranking: state => state.rankingObj[state.currentRankingKey] && state.rankingObj[state.currentRankingKey].results
@@ -15,6 +16,9 @@ const store = () => new Vuex.Store({
     },
     setCurrentRankingKey(state, currentRankingKey) {
       state.currentRankingKey = currentRankingKey
+    },
+    setIsLoading(state, isLoading) {
+      state.isLoading = isLoading
     }
   },
   actions: {
@@ -25,9 +29,14 @@ const store = () => new Vuex.Store({
           commit('setCurrentRankingKey', rankingKey)
           return
         }
+
+        commit('setIsLoading', true)
         const results = await this.$axios.$get(`/dev/ranking?range=${range ? range : ''}`)
+        commit('setIsLoading', false)
+
         commit('setRanking', { results: results, range: rankingKey})
       } catch (e) {
+        commit('setIsLoading', false)
         return Promise.reject(e)
       }
     }
