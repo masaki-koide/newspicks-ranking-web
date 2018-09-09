@@ -41,7 +41,8 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
   axios: {
   },
@@ -55,6 +56,9 @@ module.exports = {
       accent: '#8c9eff',
       error: '#b71c1c'
     }
+  },
+  'google-analytics': {
+    id: 'UA-39224855-5'
   }
 }
 
