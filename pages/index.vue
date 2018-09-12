@@ -45,7 +45,6 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
-import AppLogo from '~/components/AppLogo.vue'
 
 export default {
   async created() {
@@ -57,9 +56,6 @@ export default {
   },
   methods: {
     ...mapActions(['getRanking'])
-  },
-  components: {
-    AppLogo
   }
 }
 </script>
