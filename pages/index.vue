@@ -47,12 +47,12 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
-  async created() {
-    await this.getRanking('day')
-  },
   computed: {
     ...mapState(['isLoading']),
     ...mapGetters(['ranking'])
+  },
+  async created() {
+    await this.getRanking('day')
   },
   methods: {
     ...mapActions(['getRanking'])
@@ -69,4 +69,3 @@ a {
   text-decoration: none;
 }
 </style>
-
