@@ -48,8 +48,8 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
-  async asyncData({ store }) {
-    await store.dispatch('getRanking', 'day')
+  async created() {
+    await this.getRanking('day')
   },
   computed: {
     ...mapState(['isLoading']),
