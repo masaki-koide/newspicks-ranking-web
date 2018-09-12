@@ -12,3 +12,6 @@ dist
 
 # dotenv
 .env
+
+# VSCode
+.vscode
