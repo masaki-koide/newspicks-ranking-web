@@ -28,7 +28,7 @@ const store = () => new Vuex.Store({
     async getRanking({ state, commit }, range) {
       try {
         const rankingKey = range ? range : 'default'
-        if (state.rankingObj[rankingKey]) {
+        if (range !== 'day' && state.rankingObj[rankingKey]) {
           commit('setCurrentRankingKey', rankingKey)
           return
         }
