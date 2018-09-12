@@ -11,7 +11,10 @@ const store = () => new Vuex.Store({
   },
   mutations: {
     setRanking(state, { results, range }) {
-      state.rankingObj[range] = results
+      state.rankingObj = {
+        ...state.rankingObj,
+        [range]: results
+      }
       state.currentRankingKey = range
     },
     setCurrentRankingKey(state, currentRankingKey) {
