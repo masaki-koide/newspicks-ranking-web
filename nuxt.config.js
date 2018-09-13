@@ -59,6 +59,7 @@ module.exports = {
     id: process.env.GOOGLE_ANALYTICS_TRACKING_ID
   },
   'google-adsense': {
-    id: process.env.GOOGLE_ADSENSE_CLIENT_ID
+    id: process.env.GOOGLE_ADSENSE_CLIENT_ID,
+    pageLevelAds: true
   }
 }
