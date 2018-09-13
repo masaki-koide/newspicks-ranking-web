@@ -5,7 +5,8 @@ const store = () =>
     state: {
       rankingObj: {},
       currentRankingKey: null,
-      isLoading: false
+      isLoading: false,
+      isError: false
     },
     getters: {
       ranking: state =>
@@ -25,6 +26,9 @@ const store = () =>
       },
       setIsLoading(state, isLoading) {
         state.isLoading = isLoading
+      },
+      setIsError(state, isError) {
+        state.isError = isError
       }
     },
     actions: {
@@ -45,6 +49,7 @@ const store = () =>
           commit('setRanking', { results: results, range: rankingKey })
         } catch (e) {
           commit('setIsLoading', false)
+          commit('setIsError', true)
           return Promise.reject(e)
         }
       }
