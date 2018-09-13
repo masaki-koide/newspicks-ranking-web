@@ -17,6 +17,14 @@
         <v-tab @click="getRanking(null)">全期間</v-tab>
       </v-tabs>
       <div v-if="!isLoading">
+        <div v-if="isError || !ranking">
+          <v-alert
+            :value="true"
+            color="red"
+            outline>
+            エラーが発生しました。しばらく待ってから画面を再読込してください。
+          </v-alert>
+        </div>
         <v-layout wrap>
           <v-flex v-for="post in ranking" :key="post.url" xs12 sm6>
             <v-card tile hover>
@@ -45,21 +53,17 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
-import AppLogo from '~/components/AppLogo.vue'
 
 export default {
+  computed: {
+    ...mapState(['isLoading', 'isError']),
+    ...mapGetters(['ranking'])
+  },
   async created() {
     await this.getRanking('day')
   },
-  computed: {
-    ...mapState(['isLoading']),
-    ...mapGetters(['ranking'])
-  },
   methods: {
     ...mapActions(['getRanking'])
-  },
-  components: {
-    AppLogo
   }
 }
 </script>
@@ -73,4 +77,3 @@ a {
   text-decoration: none;
 }
 </style>
-
