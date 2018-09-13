@@ -40,7 +40,8 @@ module.exports = {
     '@nuxtjs/proxy',
     '@nuxtjs/dotenv',
     '@nuxtjs/vuetify',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/google-adsense'
   ],
   axios: {},
   proxy: {
@@ -56,5 +57,8 @@ module.exports = {
   },
   'google-analytics': {
     id: 'UA-39224855-5'
+  },
+  'google-adsense': {
+    id: process.env.GOOGLE_ADSENSE_CLIENT_ID
   }
 }
