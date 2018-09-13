@@ -56,7 +56,7 @@ module.exports = {
     }
   },
   'google-analytics': {
-    id: 'UA-39224855-5'
+    id: process.env.GOOGLE_ANALYTICS_TRACKING_ID
   },
   'google-adsense': {
     id: process.env.GOOGLE_ADSENSE_CLIENT_ID
